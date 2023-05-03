@@ -1,56 +1,10 @@
-<<<<<<< HEAD
-import { useState , useEffect } from "react";
-import { useParams , useNavigate , Link} from "react-router-dom";
-import axios from "axios";
-const API = process.env.REACT_APP_API_URL;
-
-function BookmarkDetails() {
-  const [bookmark, setBookmark] = useState([]);
-  let { id } = useParams();
-
-  useEffect(() => {
-    axios  
-    .get(`${API}/bookmarks/${id}`)
-    .then((response) => {
-      console.log(response.data);
-      setBookmark(response.data);
-    })
-    .catch((c) => {
-      console.warn("catch:", c);
-    });
-    },[id]);
-  
-  return <article>
-    <h3>{bookmark.is_favorite ? <span>⭐️</span> : null} {bookmark.name}</h3>
-    <h5>
-      <span>
-        <a href={bookmark.url}>{bookmark.name}</a>
-      </span>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {bookmark.url}
-    </h5>
-    <h6>{bookmark.category}</h6>
-    <div className="showNavigation">
-      <div>
-        <Link to={`/bookmarks`}>
-          <button>Back</button>
-        </Link>
-      </div>
-      <div>
-        <Link to={`/bookmarks/id/edit`}>
-          <button>Edit</button>
-        </Link>
-      </div>
-      <div>
-        <button>Delete</button>
-      </div>
-    </div>
-    </article>;
-=======
 import { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import Reviews from "./Reviews";
 
 const API = process.env.REACT_APP_API_URL;
+
 function BookmarkDetails() {
   const [bookmark, setBookmark] = useState([]);
 
@@ -61,7 +15,6 @@ function BookmarkDetails() {
     axios
       .get(`${API}/bookmarks/${id}`)
       .then((response) => {
-        console.log(response.data);
         setBookmark(response.data);
       })
       .catch((e) => {
@@ -111,9 +64,10 @@ function BookmarkDetails() {
           <button onClick={handleDelete}>Delete</button>
         </div>
       </div>
+      <Reviews/>
     </article>
+
   );
->>>>>>> e7f9f8bd536b143623d84fa3c2da5c1109d824cd
 }
 
 export default BookmarkDetails;
