@@ -6,12 +6,25 @@ const API = process.env.REACT_APP_API_URL;
 
 function Bookmarks() {
   const [bookmarks, setBookmarks] = useState([]);
+<<<<<<< HEAD
   useEffect(() => {
     axios.get(`${API}/bookmarks`).then((response) => {
       setBookmarks(response.data)
     }).catch((e)=> {
       console.warn("catch", e)
     })
+=======
+
+  useEffect(() => {
+    axios
+      .get(`${API}/bookmarks`)
+      .then((response) => {
+        setBookmarks(response.data);
+      })
+      .catch((e) => {
+        console.warn("catch", e);
+      });
+>>>>>>> e7f9f8bd536b143623d84fa3c2da5c1109d824cd
   }, []);
   return (
     <div className="Bookmarks">
